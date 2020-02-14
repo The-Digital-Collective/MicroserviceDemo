@@ -1,0 +1,55 @@
+﻿@using System.ServiceModel.Dispatcher
+@model IEnumerable<Model.Customer>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2> Customer List</h2>
+
+
+<div style="width: 18%; float: left; padding: 1%"></div>
+<div style="width: 18%; float: left; padding: 1%; background: lightgray;">
+    ID
+</div>
+
+<div style="width: 18%; float: left; padding: 1%; background: lightgray;">
+    Name
+</div>
+
+<div style="width: 18%; float: left; padding: 1%; background: lightgray;">
+    Contact
+</div>
+
+<div style="width: 18%; float: left; padding: 1%; background: lightgray;">
+    Address
+</div>
+
+
+@{
+    foreach (var customer in Model)
+    {
+        <div style="width: 18%; float: left; padding: 1%"></div>
+        <div style="width: 18%; float: left; padding: 1%">
+            @customer.ID
+        </div>
+
+        <div style="width: 18%; float: left; padding: 1%">
+            @customer.Name
+        </div>
+
+        <div style="width: 18%; float: left; padding: 1%">
+            @customer.ContactNumber
+        </div>
+
+        <div style="width: 18%; float: left; padding: 1%">
+            @customer.Address
+        </div>
+    }
+}
+
+@{
+    for (int i = 14; i >= 0; i--)
+    {
+        <br />
+    }
+}
