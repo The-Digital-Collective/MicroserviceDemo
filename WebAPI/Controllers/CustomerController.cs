@@ -20,8 +20,9 @@ namespace WebAPI.Controllers
         [HttpGet]
         public HttpResponseMessage Validate(string token, string username)
         {
- 
-            string tokenUsername = TokenManager.ValidateToken(token);
+            string secret = ConfigurationManager.AppSettings["KeyValue"];
+
+            string tokenUsername = TokenManager.ValidateToken(token, secret);
 
             if (!username.Equals(tokenUsername))
             {

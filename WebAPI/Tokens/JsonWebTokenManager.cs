@@ -15,10 +15,10 @@ namespace WebAPI.Models
     {
         // key (secret) required for encryption and decryption. 
         // Held in code for demo only. Store in the Key Vault for non-demo implementations
-        private static string Secret = "ALLWORKANDNOPLAYMAKESJACKADULLBOY123";
+        //private static string Secret = "ALLWORKANDNOPLAYMAKESJACKADULLBOY123";
 
         // The method reads the token in string format and converts it into a JwtSecurityToken
-        public static ClaimsPrincipal GetPrincipal(string token)
+        public static ClaimsPrincipal GetPrincipal(string token, string secret)
         {
             try
             {
@@ -34,7 +34,7 @@ namespace WebAPI.Models
 
                 // Generate parameters for use in the validation process and re-creates the key
                 // using the same secret as used in the token generation step
-                byte[] key = Convert.FromBase64String(Secret);
+                byte[] key = Convert.FromBase64String(secret);
                 TokenValidationParameters parameters = new TokenValidationParameters()
                 {
                     RequireExpirationTime = true,
@@ -55,10 +55,10 @@ namespace WebAPI.Models
         }
 
         // This method creates the Principal object using the token and then extracts the Identity object out of it.
-        public static string ValidateToken(string token)
+        public static string ValidateToken(string token, string secret)
         {
             string username = null;
-            ClaimsPrincipal principal = GetPrincipal(token);
+            ClaimsPrincipal principal = GetPrincipal(token, secret);
 
             if (principal == null)
             {
